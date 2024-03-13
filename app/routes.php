@@ -5,3 +5,4 @@ $this->addRoute('User/login','User,login');
 $this->addRoute('User/logout','User,logout');
 $this->addRoute('Profile/create','Profile,create');
 $this->addRoute('Profile/index','Profile,index');
+$this->addRoute('Profile/modify','Profile,modify');

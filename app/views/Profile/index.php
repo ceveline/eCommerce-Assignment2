@@ -6,7 +6,9 @@
 </head>
 <body>
 	<div class='container'>
-		<h1>My profile</h1>
+		<div class="profile">
+			<a href='/Profile/modify'>Modify my profile</a> | <a href='/User/logout'>Logout</a>
+			<h1>My profile</h1>
 			<dl>
 			<dt>First name:</dt>
 			<dd><?= $data->first_name ?></dd>
@@ -15,7 +17,18 @@
 			<dt>Last name:</dt>
 			<dd><?= $data->last_name ?></dd>
 			</dl>
-			<a href='/Profile/modify'>Modify my profile</a> | <a href='/User/logout'>Logout</a>
+		</div>
+		<div class="publications">
+			<h1>My Publications</h1>
+			<!-- create a foreach loop to display all the data from db of this user's publications-->
+			<a href="">Create a new publication.</a>
+		</div>
+		<div class="comments">
+			<h1>My Comments</h1>
+			<!-- create a foreach loop to display all the data from db of this user's comments-->
+		</div>
+			
+
 	</div>
 </body>
 </html>
