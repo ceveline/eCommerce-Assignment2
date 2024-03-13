@@ -1,8 +1,8 @@
 <?php
 namespace app\core;
 
-class App{
-    private $routes = [];]
+class App {
+    private $routes = [];
 
     public function addRoute($url,$handler){
         $url = preg_replace('/{([^\/]+)}/', '(?<$1>[^\/]+)', $url);

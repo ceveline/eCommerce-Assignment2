@@ -16,7 +16,7 @@ class User extends \app\core\Model {
         $SQL = 'INSERT INTO user (username, password_hash) VALUES (:username, :password_hash)';
 
         //prepare statement
-        $STMT = self::$_conn->prepare(SQL);
+        $STMT = self::$_conn->prepare($SQL);
 
         //execute the statement
         $data = ['username'=> $this->username, 
@@ -31,7 +31,7 @@ class User extends \app\core\Model {
         $SQL = 'SELECT * FROM user WHERE user_id = :user_id';
 
         //prepare statement
-        $STMT = self::$_conn->prepare(SQL);
+        $STMT = self::$_conn->prepare($SQL);
 
         //execute the statement
         $data = ['user_id'=> $user_id];
@@ -50,7 +50,7 @@ class User extends \app\core\Model {
         $SQL = 'SELECT * FROM user WHERE username = :username';
 
         //prepare statement
-        $STMT = self::$_conn->prepare(SQL);
+        $STMT = self::$_conn->prepare($SQL);
 
         //execute the statement
         $data = ['username'=> $username];

@@ -11,7 +11,7 @@ class User extends \app\core\Controller {
             $user = $user->getByUsername($username);
 
             $password = $_POST['password'];
-            if($user && $user->active $$ password_verify($password, $user->password_hash)) {
+            if($user && $user->active && password_verify($password, $user->password_hash)) {
                 $_SESSION['user_id'] = $user->user_id;
 
                 header('location:/User/home'); //can change the location to something else
@@ -40,6 +40,7 @@ class User extends \app\core\Controller {
         else {
             $this->view('User/registration');
         }
+        
     }
 
     //logout
