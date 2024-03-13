@@ -21,7 +21,7 @@
 		<div class="publications">
 			<h1>My Publications</h1>
 			<!-- create a foreach loop to display all the data from db of this user's publications-->
-			<a href="">Create a new publication.</a>
+			<a href="">Create a new publication</a>
 		</div>
 		<div class="comments">
 			<h1>My Comments</h1>
