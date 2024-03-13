@@ -6,15 +6,15 @@ class User extends \app\core\Controller {
     //login
     function login() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $username = $_POST['username'];
+            
             $user = new \app\models\User();
+            $username = $_POST['username'];
             $user = $user->getByUsername($username);
 
             $password = $_POST['password'];
-            if($user && $user->active && password_verify($password, $user->password_hash)) {
+            if($user && password_verify($password, $user->password_hash)) {
                 $_SESSION['user_id'] = $user->user_id;
-
-                header('location:/User/home'); //can change the location to something else
+                header('location:/Profile/index'); 
             }
             else {
                 header('location:/User/login');

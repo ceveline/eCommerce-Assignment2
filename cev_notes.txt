@@ -1,0 +1,1 @@
+- for Profile/index, it should display the info of the user and publications made by this user.
