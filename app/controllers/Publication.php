@@ -48,21 +48,24 @@ class Publication extends \app\core\Controller {
     }
 
     function edit() { //when clicking the "edit" button
+        $publication_id = $_GET['id']; //get id of the publication from the URL
+        $publication = new \app\models\Publication();
+        $publication = $publication->getById($publication_id); //get the first publication by id
+
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id = $_GET['id']; //get from the URL
-
-            $publication = new \app\models\Publication();
-
-            $publication->profile_id = $id;
+            // $publication->profile_id = $id;
             $publication->publication_title = $_POST['publication_title'];
             $publication->publication_text = $_POST['publication_text'];
-            $publication->timestamp = date('Y-m-d H:i:s');
+            // $publication->timestamp = date('Y-m-d H:i:s');
             $publication->publication_status = $_POST['publication_status'];
 
 
-            $publication->update($id);
+            $publication->update($publication_id);
 
             header('location:/Profile/index');
+        }
+        else {
+            $this->view('Publication/edit', $publication);
         }
     
     }
