@@ -11,7 +11,7 @@
 				<label>Title:<input type="text" class="form-control" name="publication_title" value="<?=$data->publication_title?>"/></label>
 			</div>
 			<div class="form-group">
-				<textarea form="main" class="form-control" name="publication_text" rows="6"><?=$data->publication_text?></textarea>
+				<textarea form="main" class="form-control" name="publication_text" rows="6" maxlength="255"><?=$data->publication_text?></textarea>
 			</div>
             <div class="radioBtns">
                 <input id="private" type="radio" name="publication_status" value="0"><label>Private</label></input>

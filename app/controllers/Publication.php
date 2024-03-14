@@ -4,22 +4,8 @@ namespace app\controllers;
 
 #[\app\filters\Login]
 class Publication extends \app\core\Controller {
-    
-    //to list all the publications
-    // function publicationList() { 
-    //     var_dump("test");
 
-    //     if (isset($_SESSION['profile_id'])) {
-    //         var_dump("yes");
-    //     }
-    //     else {var_dump("no");}
-            
-    //     $publication = new \app\models\Publication();
-	// 	$publication = $publication->get($_SESSION['profile_id']);
-        
-	// 	$this->view('Publication/publicationList',$publication);
-    // }
-
+    #[\app\filters\HasProfile]
     function list() { 
         $publication = new \app\models\Publication();
         $publications = $publication->get($_SESSION['profile_id']);
@@ -27,7 +13,7 @@ class Publication extends \app\core\Controller {
         $this->view('Publication/list', ['publications' => $publications]);
     }
     
-
+    #[\app\filters\HasProfile]
     function create() {
         date_default_timezone_set('America/New_York'); //to make sure the timestamp is EST time
 
@@ -49,15 +35,15 @@ class Publication extends \app\core\Controller {
         }
     }
 
+    #[\app\filters\HasProfile]
     function edit() { //when clicking the "edit" button
         date_default_timezone_set('America/New_York'); //to make sure the timestamp is EST time
 
         $publication_id = $_GET['id']; //get id of the publication from the URL
         $publication = new \app\models\Publication();
-        $publication = $publication->getById($publication_id); //get the first publication by id
+        $publication = $publication->getById($publication_id); //get the data of the publication by id
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // $publication->profile_id = $id;
             $publication->publication_title = $_POST['publication_title'];
             $publication->publication_text = $_POST['publication_text'];
             $publication->timestamp = date('Y-m-d H:i:s');
@@ -74,6 +60,7 @@ class Publication extends \app\core\Controller {
     
     }
 
+    #[\app\filters\HasProfile]
     function delete() {
         $id = $_GET['id'];
         $publication = new \app\models\Publication();
