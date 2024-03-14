@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+
 class User extends \app\core\Controller {
     //login
+    #[\app\filters\Logout]
     function login() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
@@ -26,6 +28,7 @@ class User extends \app\core\Controller {
     }
 
     //register
+    #[\app\filters\Logout]
     function register() {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = new \app\models\User();

@@ -32,7 +32,7 @@
             <a class="navbar-brand">eCommerce Assignment 2</a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/Main/index">Main Menu</a>
+                    <a class="nav-link" href="/Publication/index">Main Menu</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/Main/about_us">About us</a>
