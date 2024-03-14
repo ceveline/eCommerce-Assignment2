@@ -29,6 +29,8 @@ class Publication extends \app\core\Controller {
     
 
     function create() {
+        date_default_timezone_set('America/New_York'); //to make sure the timestamp is EST time
+
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $publication = new \app\models\Publication();
 
@@ -48,6 +50,8 @@ class Publication extends \app\core\Controller {
     }
 
     function edit() { //when clicking the "edit" button
+        date_default_timezone_set('America/New_York'); //to make sure the timestamp is EST time
+
         $publication_id = $_GET['id']; //get id of the publication from the URL
         $publication = new \app\models\Publication();
         $publication = $publication->getById($publication_id); //get the first publication by id
@@ -56,7 +60,7 @@ class Publication extends \app\core\Controller {
             // $publication->profile_id = $id;
             $publication->publication_title = $_POST['publication_title'];
             $publication->publication_text = $_POST['publication_text'];
-            // $publication->timestamp = date('Y-m-d H:i:s');
+            $publication->timestamp = date('Y-m-d H:i:s');
             $publication->publication_status = $_POST['publication_status'];
 
 

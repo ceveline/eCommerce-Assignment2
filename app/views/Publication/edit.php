@@ -14,14 +14,25 @@
 				<textarea form="main" class="form-control" name="publication_text" rows="6"><?=$data->publication_text?></textarea>
 			</div>
             <div class="radioBtns">
-                <input type="radio" name="publication_status" value="0"><label>Private</label></input>
-                <input type="radio" name="publication_status" value="1"><label>Public</label></input>
+                <input id="private" type="radio" name="publication_status" value="0"><label>Private</label></input>
+                <input id="public" type="radio" name="publication_status" value="1"><label>Public</label></input>
             </div>
 			<div class="form-group">
-				<input type="submit" name="action" value="Edit" /> 
-				<!-- <a href='/Profile/index'>Cancel</a> (should not be here) -->
+				<input type="submit" name="action" value="Edit" />
 			</div>
 		</form>
 	</div>
+
+		
+	<script>
+        //to check which of the radio buttons is chosen
+        var selected_btn = <?=$data->publication_status?>;
+        if(selected_btn === 0) {
+            document.getElementById("private").setAttribute("checked", "checked");
+        }
+        else {
+            document.getElementById("public").setAttribute("checked", "checked");
+        }
+    </script>
 </body>
 </html>
