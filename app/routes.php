@@ -6,3 +6,9 @@ $this->addRoute('User/logout','User,logout');
 $this->addRoute('Profile/create','Profile,create');
 $this->addRoute('Profile/index','Profile,index');
 $this->addRoute('Profile/modify','Profile,modify');
+$this->addRoute('Publication/create','Publication,create');
+$this->addRoute('Publication/list','Publication,list');
+$this->addRoute('Publication/delete','Publication,delete');
+$this->addRoute('Publication/edit','Publication,edit');
+
+

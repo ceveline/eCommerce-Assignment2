@@ -6,27 +6,22 @@
 </head>
 <body>
 	<div class='container'>
-		<form id="main" method='post' action=''>
+		<form method='post' action=''>
 			<div class="form-group">
-				<label>Title:<input type="text" class="form-control" name="publication_title"" /></label>
+				<label>Title:<input type="text" class="form-control" name="publication_title" /></label>
 			</div>
-
 			<div class="form-group">
-			<textarea id="publication_text" form="main" class="form-control" name="publication_text" rows="6" placeholder="Type your content here"></textarea>
+				<label>Text:<input type="text" class="form-control" name="publication_text" /></label>
 			</div>
-
             <div class="radioBtns">
                 <input type="radio" name="publication_status" value="0"><label>Private</label></input>
                 <input type="radio" name="publication_status" value="1"><label>Public</label></input>
             </div>
 			<div class="form-group">
-				<input type="submit" name="action" value="Publish" /> 
+				<input type="submit" name="action" value="Edit" /> 
 				<!-- <a href='/Profile/index'>Cancel</a> (should not be here) -->
 			</div>
 		</form>
 	</div>
-
-
-
 </body>
 </html>

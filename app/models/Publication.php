@@ -34,8 +34,18 @@ class Publication extends \app\core\Model {
         $STMT->execute();
 
         $STMT->setFetchMode(PDO::FETCH_CLASS,'app\models\Publication');//set the type of data returned by fetches
-		return $STMT->fetch();
+		return $STMT->fetchAll();
     }
+
+    public function get($profile_id) {
+        $SQL = 'SELECT * FROM publication WHERE profile_id = :profile_id';
+        $STMT = self::$_conn->prepare($SQL);
+        $STMT->execute(['profile_id'=>$profile_id]);
+    
+        $STMT->setFetchMode(PDO::FETCH_CLASS,'app\models\Publication');
+        return $STMT->fetchAll();
+    }
+    
 
     public function getByTitle($publication_title) {
         $SQL = 'SELECT * FROM publication WHERE publication_title = :publication_title';
@@ -43,7 +53,7 @@ class Publication extends \app\core\Model {
         $STMT->execute(['publication_title'=>$publication_title]);
 
         $STMT->setFetchMode(PDO::FETCH_CLASS,'app\models\Publication');//set the type of data returned by fetches
-		return $STMT->fetch();
+		return $STMT->fetchAll();
     }
 
     public function getByContent($publication_text) {
@@ -52,32 +62,34 @@ class Publication extends \app\core\Model {
         $STMT->execute(['publication_text'=>$publication_text]);
 
         $STMT->setFetchMode(PDO::FETCH_CLASS,'app\models\Publication');//set the type of data returned by fetches
-		return $STMT->fetch();
+		return $STMT->fetchAll();
     }
 
     //update
 
-    public function update() {
+    public function update($publication_id) {
         $SQL = 'UPDATE publication SET publication_title=:publication_title,
                     publication_text=:publication_text,
+                    timestamp=:timestamp,
                     publication_status=:publication_status 
                     WHERE publication_id = :publication_id';
         $STMT = self::$_conn->prepare($SQL);
         $STMT->execute([
             'publication_title'=>$this->publication_title,
-            'publication_text'=$this->publication_text,
-            'publication_status'=$this->publication_status
+            'publication_text'=>$this->publication_text,
+            'publication_status'=>$this->publication_status
         ]);
     }
     
     //delete
-    publication function delete() {
-        $SQL = 'DELETE FROM profile WHERE publication_id = :publication_id';
+    public function delete($publication_id) {
+        $SQL = 'DELETE FROM publication WHERE publication_id = :publication_id';
 		$STMT = self::$_conn->prepare($SQL);
 		$STMT->execute(
-			['publication_id'=>$this->publication_id]
+			['publication_id'=> $publication_id] //no
 		);
     }
+    
 
     
 }
