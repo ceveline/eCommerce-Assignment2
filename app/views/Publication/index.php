@@ -20,6 +20,16 @@
             border-radius: 5px; /* 5px rounded corners */
             padding: 10px; /* Adds padding inside each card */
         }
+
+        .text {
+            font-size: large;
+        }
+
+        .timestamp, .author{
+            font-size: small;
+        }
+
+        
     </style>
 </head>
 <body>
