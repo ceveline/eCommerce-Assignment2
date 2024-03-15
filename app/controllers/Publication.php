@@ -2,9 +2,20 @@
 
 namespace app\controllers;
 
-#[\app\filters\Login]
+
 class Publication extends \app\core\Controller {
 
+    //show all the public publications on the main menu
+    function index() {
+        $publication = new \app\models\Publication();
+        $publications = $publication->getProfilePublication();
+        
+        $this->view('Publication/index', ['publications' => $publications]);
+
+        
+    }
+
+    #[\app\filters\Login]
     #[\app\filters\HasProfile]
     function list() { 
         $publication = new \app\models\Publication();
@@ -13,6 +24,7 @@ class Publication extends \app\core\Controller {
         $this->view('Publication/list', ['publications' => $publications]);
     }
     
+    #[\app\filters\Login]
     #[\app\filters\HasProfile]
     function create() {
         date_default_timezone_set('America/New_York'); //to make sure the timestamp is EST time
@@ -35,6 +47,7 @@ class Publication extends \app\core\Controller {
         }
     }
 
+    #[\app\filters\Login]
     #[\app\filters\HasProfile]
     function edit() { //when clicking the "edit" button
         date_default_timezone_set('America/New_York'); //to make sure the timestamp is EST time
@@ -60,6 +73,7 @@ class Publication extends \app\core\Controller {
     
     }
 
+    #[\app\filters\Login]
     #[\app\filters\HasProfile]
     function delete() {
         $id = $_GET['id'];

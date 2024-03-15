@@ -24,6 +24,18 @@ class Profile extends \app\core\Model {
         
     }
 
+    public function getAll() { //join the tables
+        $SQL = 'SELECT profile.profile_id, profile.first_name, profile.middle_name, profile.last_name, 
+        publication.publication_title, publication.publication_text
+        FROM publication
+        JOIN profile ON profile.profile_id=publication.profile_id;'; // Modify the join condition according to your database schema
+        $STMT = self::$_conn->prepare($SQL);
+        $STMT->execute();
+    
+        $STMT->setFetchMode(PDO::FETCH_CLASS,'app\models\Publication');
+        return $STMT->fetchAll();
+    }
+
     //read
 	public function getForUser($user_id){
 		$SQL = 'SELECT * FROM profile WHERE user_id = :user_id';

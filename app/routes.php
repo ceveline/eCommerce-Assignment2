@@ -10,5 +10,6 @@ $this->addRoute('Publication/create','Publication,create');
 $this->addRoute('Publication/list','Publication,list');
 $this->addRoute('Publication/delete','Publication,delete');
 $this->addRoute('Publication/edit','Publication,edit');
+$this->addRoute('Publication/index','Publication,index');
 
 

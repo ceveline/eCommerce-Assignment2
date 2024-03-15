@@ -19,14 +19,6 @@
 			<dd><?= $data->last_name ?></dd>
 			</dl>
 		</div>
-
-		<?php
-			//called the view of the listings on Profile.php
-		?>
-		
-		<div class="comments">
-			
-		</div>
 			
 
 	</div>

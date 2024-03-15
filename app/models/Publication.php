@@ -27,9 +27,22 @@ class Publication extends \app\core\Model {
     }
 
     //read:
+    public function getProfilePublication() { //join the tables to get the names as well for tge post cards (view)
+        $SQL = 'SELECT profile.profile_id, profile.first_name, profile.middle_name, profile.last_name, 
+        publication.publication_title, publication.publication_text, publication.publication_status, publication.timestamp
+        FROM publication
+        JOIN profile ON profile.profile_id=publication.profile_id
+        WHERE publication.publication_status = 1;';
+        
+        $STMT = self::$_conn->prepare($SQL);
+        $STMT->execute();
+    
+        $STMT->setFetchMode(PDO::FETCH_CLASS,'app\models\Publication');
+        return $STMT->fetchAll();
+    }
 
     public function getAll() {
-        $SQL = 'SELECT * FROM publication';
+        $SQL = 'SELECT * FROM publication WHERE publication_status = 1';
         $STMT = self::$_conn->prepare($SQL);
         $STMT->execute();
 

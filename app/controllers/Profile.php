@@ -58,4 +58,29 @@ class Profile extends \app\core\Controller {
 			$this->view('Profile/modify', $profile);
 		}
     }
+
+    //read, to use in Publication controller to get the name of the user
+    // public function getProfiles() {
+    //     $profile = new \app\models\Profile();
+    //     $profiles = $profile->getAll();
+
+    //     $this->view('Publication/index', ['profiles' => $profiles]);
+    // }
+
+    public function getProfiles() {
+        $profile = new \app\models\Profile();
+        $profiles = $profile->getAll();
+
+        // Prepare an associative array with profile information
+        $profileInfo = [];
+        foreach ($profiles as $profile) {
+            $profileInfo[$profile->profile_id] = [
+                'first_name' => $profile->first_name,
+                'middle_name' => $profile->middle_name,
+                'last_name' => $profile->last_name
+            ];
+        }
+
+        return $profileInfo;
+    }
 }
