@@ -43,9 +43,6 @@
                 <li class="nav-item">
                 <a href="/Profile/index"><i id='icon' class="bi bi-person"></i></a>
                 </li>
-                <li class="nav-item">
-                    <a href="/User/logout"><i id='icon' class="bi bi-box-arrow-right"></i><a>
-                </li>
                 
             </ul>
         </div>
