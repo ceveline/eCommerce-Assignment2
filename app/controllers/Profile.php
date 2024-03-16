@@ -9,7 +9,7 @@ class Profile extends \app\core\Controller {
 		$profile = new \app\models\Profile();
 		$profile = $profile->getForUser($_SESSION['user_id']);
         $_SESSION['profile_id'] = $profile->profile_id; //store the profile_id into a session for publication
-		$this->view('Profile/index',$profile);
+		$this->view('Profile/index',$profile, true);
         
         $publicationController = new \app\controllers\Publication();
         $publicationController->list();
@@ -26,7 +26,6 @@ class Profile extends \app\core\Controller {
             $profile->middle_name = $_POST['middle_name'];
             $profile->last_name = $_POST['last_name'];
             
-
             //insert to DB
             $profile->insert();
 

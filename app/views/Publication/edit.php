@@ -13,7 +13,7 @@
 			<div class="form-group">
 				<textarea form="main" class="form-control" name="publication_text" rows="6" maxlength="255"><?=$data->publication_text?></textarea>
 			</div>
-            <div class="radioBtns">
+            <div class="radioBtns" require>
                 <input id="private" type="radio" name="publication_status" value="0"><label>Private</label></input>
                 <input id="public" type="radio" name="publication_status" value="1"><label>Public</label></input>
             </div>

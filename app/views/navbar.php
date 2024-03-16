@@ -19,6 +19,7 @@
             cursor: pointer;
             color: #D0D0D0;
         }
+
         #icon {
             font-size: 1.8rem;
             margin-left: 30;
@@ -32,24 +33,20 @@
             <a class="navbar-brand">eCommerce Assignment 2</a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/Publication/index">Main Menu</a>
+                    <a href="/Publication/index"><i id='icon' class="bi bi-list">Main Menu</i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/Main/about_us">About us</a>
+                    <a href="/Profile/index"><i id='icon' class="bi bi-person">Profile</i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/Contact/index">Contact us</a>
+                    <a href="/User/logout"><i id='icon' class="bi bi-box-arrow-right">Logout</i><a>
                 </li>
-                <li class="nav-item">
-                <a href="/Profile/index"><i id='icon' class="bi bi-person"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a href="/User/logout"><i id='icon' class="bi bi-box-arrow-right"></i><a>
-                </li>
-                
+
             </ul>
         </div>
     </nav>
+
+
 </body>
 
 </html>

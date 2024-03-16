@@ -33,7 +33,6 @@
     </style>
 </head>
 <body>
-    <?php include 'app/styles/navbar.php';?>
     <div class="container">
     
         <h1>Publications</h1>

@@ -10,9 +10,8 @@ class Publication extends \app\core\Controller {
         $publication = new \app\models\Publication();
         $publications = $publication->getProfilePublication();
         
-        $this->view('Publication/index', ['publications' => $publications]);
+        $this->view('Publication/index', ['publications' => $publications], true);
 
-        
     }
 
     #[\app\filters\Login]
