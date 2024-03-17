@@ -45,20 +45,16 @@
                     <div class="card">
                         <div class="title">
                             <h3>
-                                <a href=""><?php echo $pub->publication_title; ?></a>
+                                <a href="/Publication/view/<?php echo $pub->publication_id;?>"><?php echo $pub->publication_title; ?></a>
                             </h3>
                         </div>
-                        <div class="text">
-                            <p><?= $pub->publication_text; ?></p>
-                        </div>
+                        
                         <div class="author">
-                            <p>By <?= $pub->first_name?> <?= $pub->middle_name ?> <?= $pub->last_name;?></p>
+                            <p>By <?=$pub->publication_id?> <?= $pub->middle_name ?> <?= $pub->last_name;?></p>
                         </div>
                         <div class="timestamp">
                             <p>Created on <?= $pub->timestamp?></p>
                         </div>
-                        
-                        
                     </div>
                 <?php endforeach; ?>
             </body>

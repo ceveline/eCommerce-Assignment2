@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-
 class Publication extends \app\core\Controller {
 
     //show all the public publications on the main menu
@@ -11,7 +10,6 @@ class Publication extends \app\core\Controller {
         $publications = $publication->getProfilePublication();
         
         $this->view('Publication/index', ['publications' => $publications], true);
-
     }
 
     #[\app\filters\Login]
@@ -61,7 +59,6 @@ class Publication extends \app\core\Controller {
             $publication->timestamp = date('Y-m-d H:i:s');
             $publication->publication_status = $_POST['publication_status'];
 
-
             $publication->update($publication_id);
 
             header('location:/Profile/index');
@@ -82,5 +79,13 @@ class Publication extends \app\core\Controller {
         header('location:/Profile/index');
     }
 
-    
+    #[\app\filters\Login]
+    #[\app\filters\HasProfile]
+    function viewPublication($id) {
+        $publication = new \app\models\Publication();
+        $publicationData = $publication->getById($id); 
+        $comments = $publication->getComments($id); 
+
+        $this->view('Publication/individual', ['publication' => $publicationData, 'comments' => $comments], true);
+    }
 }

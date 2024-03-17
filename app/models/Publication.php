@@ -28,7 +28,7 @@ class Publication extends \app\core\Model {
 
     //read:
     public function getProfilePublication() { //join the tables to get the names as well for tge post cards (view)
-        $SQL = 'SELECT profile.profile_id, profile.first_name, profile.middle_name, profile.last_name, 
+        $SQL = 'SELECT profile.profile_id, profile.first_name, profile.middle_name, profile.last_name, publication.publication_id,  
         publication.publication_title, publication.publication_text, publication.publication_status, publication.timestamp
         FROM publication
         JOIN profile ON profile.profile_id=publication.profile_id
@@ -111,6 +111,12 @@ class Publication extends \app\core\Model {
 		);
     }
     
-
+    public function getComments($publication_id) {
+        $SQL = 'SELECT * FROM publication_comment WHERE publication_id = :publication_id';
+        $STMT = self::$_conn->prepare($SQL);
+        $STMT->execute(['publication_id' => $publication_id]);
+        $STMT->setFetchMode(PDO::FETCH_CLASS, 'app\models\PublicationComment');
+        return $STMT->fetchAll();
+    }
     
 }
