@@ -73,22 +73,30 @@ class Publication extends \app\core\Model {
     
 
     public function getByTitle($publication_title) {
-        $SQL = 'SELECT * FROM publication WHERE publication_title = :publication_title';
+        $SQL = 'SELECT p.*, pub.*
+                FROM publication pub
+                JOIN profile p ON pub.profile_id = p.profile_id
+                WHERE pub.publication_title LIKE :publication_title';
         $STMT = self::$_conn->prepare($SQL);
-        $STMT->execute(['publication_title'=>$publication_title]);
-
-        $STMT->setFetchMode(PDO::FETCH_CLASS,'app\models\Publication');//set the type of data returned by fetches
-		return $STMT->fetchAll();
+        $STMT->execute(['publication_title' => '%' . $publication_title . '%']);
+    
+        $STMT->setFetchMode(PDO::FETCH_CLASS, 'app\models\Publication');
+        return $STMT->fetchAll();
     }
-
+    
     public function getByContent($publication_text) {
-        $SQL = 'SELECT * FROM publication WHERE publication_text = :publication_text';
+        $SQL = 'SELECT p.*, pub.*
+                FROM publication pub
+                JOIN profile p ON pub.profile_id = p.profile_id
+                WHERE pub.publication_text LIKE :publication_text';
         $STMT = self::$_conn->prepare($SQL);
-        $STMT->execute(['publication_text'=>$publication_text]);
-
-        $STMT->setFetchMode(PDO::FETCH_CLASS,'app\models\Publication');//set the type of data returned by fetches
-		return $STMT->fetchAll();
+        $STMT->execute(['publication_text' => '%' . $publication_text . '%']);
+    
+        $STMT->setFetchMode(PDO::FETCH_CLASS, 'app\models\Publication');
+        return $STMT->fetchAll();
     }
+    
+    
 
     //update
     public function update($publication_id) {

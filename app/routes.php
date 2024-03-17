@@ -12,6 +12,7 @@ $this->addRoute('Publication/list','Publication,list');
 $this->addRoute('Publication/delete','Publication,delete');
 $this->addRoute('Publication/edit','Publication,edit');
 $this->addRoute('Publication/index','Publication,index');
+$this->addRoute('Publication/search','Publication,search');
 $this->addRoute('Publication/view/(?<id>\d+)$', 'Publication,viewPublication');
 $this->addRoute('Comment/add/(?<publication_id>\d+)$', 'Comments,add');
 $this->addRoute('Comment/edit/(?<comment_id>\d+)$', 'Comments,edit');
