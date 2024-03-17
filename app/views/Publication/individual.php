@@ -11,14 +11,21 @@
     <div class="container">
 
         <h1><?php echo $publication->publication_title; ?></h1>
+
+        <?php if (isset($_SESSION['profile_id']) && $_SESSION['profile_id'] == $publication->profile_id) : ?>
+            <div class="edit-delete-buttons">
+                <a href="/Publication/edit?id=<?php echo $publication->publication_id; ?>">Edit</a>
+                <a href="/Publication/delete?id=<?php echo $publication->publication_id; ?>">Delete</a>
+            </div>
+        <?php endif; ?>
         <table class="table">
 
             <body>
 
                 <div class="card">
                     <div class="text">
-                            <p><?= $publication->publication_text; ?></p>
-                        </div>
+                        <p><?= $publication->publication_text; ?></p>
+                    </div>
                     <div class="author">
                         <p>By <?= $publication->first_name ?> <?= $publication->middle_name ?> <?= $publication->last_name; ?></p>
                     </div>
