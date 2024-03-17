@@ -37,7 +37,7 @@ class Profile extends \app\core\Controller {
 
         }
         else {
-            $this->view('Profile/create');
+            $this->view('Profile/create', null, true);
         }
     }
 
@@ -57,7 +57,7 @@ class Profile extends \app\core\Controller {
             header('location:/Profile/index');
         }
         else {
-			$this->view('Profile/modify', $profile);
+			$this->view('Profile/modify', $profile, true);
 		}
     }
 
