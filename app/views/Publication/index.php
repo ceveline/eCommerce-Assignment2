@@ -6,8 +6,29 @@
     <title>Main</title>
 
     <style>
-        /* Your existing CSS styles */
-        /* Add additional styles for the search bar if needed */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .card {
+            margin-top: 20px;
+            margin-bottom: 20px; /* Adds margin below each card */
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 5px; /* 5px rounded corners */
+            padding: 10px; /* Adds padding inside each card */
+        }
+
+        .text {
+            font-size: large;
+        }
+
+        .timestamp, .author{
+            font-size: small;
+        }
+
     </style>
 </head>
 <body>
@@ -31,6 +52,9 @@
                             <h3>
                                 <a href="/Publication/view/<?php echo $pub->publication_id;?>"><?php echo $pub->publication_title; ?></a>
                             </h3>
+                        </div>
+                        <div class="text">
+                        <p><?=$pub->publication_text;?></p>
                         </div>
                         
                         <div class="author">

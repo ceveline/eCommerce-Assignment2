@@ -32,7 +32,8 @@ class Publication extends \app\core\Model {
         publication.publication_title, publication.publication_text, publication.publication_status, publication.timestamp
         FROM publication
         JOIN profile ON profile.profile_id=publication.profile_id
-        WHERE publication.publication_status = 1;';
+        WHERE publication.publication_status = 1
+        ORDER BY timestamp desc;';
         
         $STMT = self::$_conn->prepare($SQL);
         $STMT->execute();
@@ -42,7 +43,7 @@ class Publication extends \app\core\Model {
     }
 
     public function getAll() {
-        $SQL = 'SELECT * FROM publication WHERE publication_status = 1';
+        $SQL = 'SELECT * FROM publication';
         $STMT = self::$_conn->prepare($SQL);
         $STMT->execute();
 
