@@ -20,7 +20,8 @@
             <tbody>
                 <?php foreach ($comments as $comment) : ?>
                     <tr>
-                        <td><?php echo $comment->comment_text; ?></td>
+                        <td> <a href="/Publication/view/<?php echo $comment->publication_id; ?>"><?php echo $comment->comment_text; ?></a>
+                        </td>
                         <td>
                             <a href="/Publication/view/<?php echo $comment->publication_id; ?>" class="btn btn-primary">View</a>
                             <a href="/Comment/edit/<?php echo $comment->publication_comment_id; ?>" class="btn btn-primary">Edit</a>

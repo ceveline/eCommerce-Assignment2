@@ -21,7 +21,8 @@
             <tbody>
                 <?php foreach ($publications as $pub) : ?>
                     <tr>
-                        <td><?php echo $pub->publication_title; ?></td>
+                        <td> <a href="/Publication/view/<?php echo $pub->publication_id; ?>"><?php echo $pub->publication_title; ?></a>
+                        </td>
                         <td>
                             <a href="/Publication/view/<?php echo $pub->publication_id; ?>" class="btn btn-primary">View</a>
                             <a href="/Publication/edit?id=<?php echo $pub->publication_id; ?>" class="btn btn-primary">Edit</a>
