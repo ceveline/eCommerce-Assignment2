@@ -48,4 +48,13 @@ class PublicationComment extends \app\core\Model
         $STMT->setFetchMode(PDO::FETCH_CLASS, 'app\models\PublicationComment');
         return $STMT->fetch();
     }
+
+    public function getCommentsByProfile($profile_id)
+    {
+        $SQL = 'SELECT * FROM publication_comment WHERE profile_id = :profile_id';
+        $STMT = self::$_conn->prepare($SQL);
+        $STMT->execute(['profile_id' => $profile_id]);
+        $STMT->setFetchMode(PDO::FETCH_CLASS, 'app\models\PublicationComment');
+        return $STMT->fetchAll();
+    }
 }

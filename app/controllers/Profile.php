@@ -13,6 +13,9 @@ class Profile extends \app\core\Controller {
         
         $publicationController = new \app\controllers\Publication();
         $publicationController->list();
+
+        $commentsController = new \app\controllers\Comments();
+        $commentsController->index();
 	}
 
     //create a profile, insertion to the database

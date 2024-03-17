@@ -9,6 +9,16 @@ use app\filters\HasProfile;
 
 class Comments extends Controller
 {
+
+    #[Login]
+    #[HasProfile]
+    public function index()
+    {
+        $commentModel = new PublicationComment();
+        $comments = $commentModel->getCommentsByProfile($_SESSION['profile_id']);
+        $this->view('Comment/index', ['comments' => $comments]);
+    }
+
     #[Login]
     #[HasProfile]
     public function add($publication_id)

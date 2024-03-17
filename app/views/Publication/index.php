@@ -50,7 +50,7 @@
                         </div>
                         
                         <div class="author">
-                            <p>By <?=$pub->publication_id?> <?= $pub->middle_name ?> <?= $pub->last_name;?></p>
+                            <p>By <?=$pub->first_name?> <?= $pub->middle_name ?> <?= $pub->last_name;?></p>
                         </div>
                         <div class="timestamp">
                             <p>Created on <?= $pub->timestamp?></p>
