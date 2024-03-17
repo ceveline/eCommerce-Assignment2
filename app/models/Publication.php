@@ -60,10 +60,13 @@ class Publication extends \app\core\Model {
     }
 
     public function getById($publication_id) {
-        $SQL = 'SELECT * FROM publication WHERE publication_id = :publication_id';
+        $SQL = 'SELECT p.*, pub.*
+                FROM publication pub
+                JOIN profile p ON pub.profile_id = p.profile_id
+                WHERE pub.publication_id = :publication_id';
         $STMT = self::$_conn->prepare($SQL);
         $STMT->execute(['publication_id'=>$publication_id]);
-    
+        
         $STMT->setFetchMode(PDO::FETCH_CLASS,'app\models\Publication');
         return $STMT->fetch();
     }
@@ -112,11 +115,15 @@ class Publication extends \app\core\Model {
     }
     
     public function getComments($publication_id) {
-        $SQL = 'SELECT * FROM publication_comment WHERE publication_id = :publication_id';
+        $SQL = 'SELECT pc.*, p.first_name, p.middle_name, p.last_name
+                FROM publication_comment pc
+                JOIN profile p ON pc.profile_id = p.profile_id
+                WHERE pc.publication_id = :publication_id';
         $STMT = self::$_conn->prepare($SQL);
         $STMT->execute(['publication_id' => $publication_id]);
         $STMT->setFetchMode(PDO::FETCH_CLASS, 'app\models\PublicationComment');
         return $STMT->fetchAll();
     }
+    
     
 }

@@ -19,9 +19,9 @@
                     <div class="text">
                             <p><?= $publication->publication_text; ?></p>
                         </div>
-                    <!-- <div class="author">
+                    <div class="author">
                         <p>By <?= $publication->first_name ?> <?= $publication->middle_name ?> <?= $publication->last_name; ?></p>
-                    </div> -->
+                    </div>
                     <div class="timestamp">
                         <p>Created on <?= $publication->timestamp ?></p>
                     </div>
@@ -35,8 +35,8 @@
                 <?php foreach ($comments as $comment) : ?>
                     <div>
                         <p><?php echo $comment->comment_text; ?></p>
-                        <!-- <p>Commented by: <?php echo $comment->first_name . ' ' . $comment->last_name; ?></p> -->
-                        <?php if ($_SESSION['profile_id'] == $comment->profile_id) : ?>
+                        <p>Commented by: <?php echo $comment->first_name . ' ' . $comment->last_name; ?></p>
+                        <?php if (isset($_SESSION['profile_id']) && $_SESSION['profile_id'] == $comment->profile_id) : ?>
                             <a href="/Comment/edit/<?php echo $comment->publication_comment_id; ?>">Edit</a>
                             <a href="/Comment/delete/<?php echo $comment->publication_comment_id; ?>">Delete</a>
                         <?php endif; ?>
@@ -52,7 +52,7 @@
                         <input type="submit" value="Add Comment">
                     </form>
                 <?php else : ?>
-                    <p>Please <a href="/Login">login</a> to add comments.</p>
+                    <p>Please <a href="/User/login">login</a> to add comments.</p>
                 <?php endif; ?>
             </body>
         </table>

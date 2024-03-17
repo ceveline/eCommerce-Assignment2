@@ -79,8 +79,6 @@ class Publication extends \app\core\Controller {
         header('location:/Profile/index');
     }
 
-    #[\app\filters\Login]
-    #[\app\filters\HasProfile]
     function viewPublication($id) {
         $publication = new \app\models\Publication();
         $publicationData = $publication->getById($id); 
