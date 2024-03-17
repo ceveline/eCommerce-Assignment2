@@ -1,52 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Bootstrap Icons CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- <meta charset="UTF-8"> -->
-    <!-- <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
-    <!-- Bootstrap CSS CDN -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
-
-    <style>
-        #icon:hover {
-            cursor: pointer;
-            color: #D0D0D0;
-        }
-
-        #icon {
-            font-size: 1.8rem;
-            margin-left: 30;
-        }
-    </style>
 </head>
-
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
         <div class="container">
-            <a class="navbar-brand">eCommerce Assignment 2</a>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="/Publication/index"><i id='icon' class="bi bi-list">Main Menu</i></a>
-                </li>
-                <li class="nav-item">
-                    <a href="/Profile/index"><i id='icon' class="bi bi-person">Profile</i></a>
-                </li>
-                <li class="nav-item">
-                    <a href="/User/logout"><i id='icon' class="bi bi-box-arrow-right">Logout</i><a>
-                </li>
-
-            </ul>
+            <a class="navbar-brand" href="#">eCommerce Assignment 2</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Publication/index"><i class="bi bi-list"></i> Main Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Profile/index"><i class="bi bi-person"></i> Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <?php
+                            if (isset($_SESSION['user_id'])) {
+                                echo '<a class="nav-link" href="/User/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>';
+                            } else {
+                                echo '<a class="nav-link" href="/User/login"><i class="bi bi-box-arrow-right"></i> Login</a>';
+                            }
+                        ?>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
-
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-Z1nag3r+hmdQ9ZQJ5CMyeGXaXPeosBSwIujzU5dXuwEJvQZUuWrVTQc9L8KqeaQc" crossorigin="anonymous"></script>
 </body>
-
 </html>
