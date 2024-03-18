@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-
 class Publication extends \app\core\Controller {
 
     //show all the public publications on the main menu
@@ -10,9 +9,7 @@ class Publication extends \app\core\Controller {
         $publication = new \app\models\Publication();
         $publications = $publication->getProfilePublication();
         
-        $this->view('Publication/index', ['publications' => $publications]);
-
-        
+        $this->view('Publication/index', ['publications' => $publications], true);
     }
 
     #[\app\filters\Login]
@@ -43,7 +40,7 @@ class Publication extends \app\core\Controller {
             header('location:/Profile/index');
         }
         else {
-            $this->view('Publication/create');
+            $this->view('Publication/create', null, true);
         }
     }
 
@@ -62,13 +59,12 @@ class Publication extends \app\core\Controller {
             $publication->timestamp = date('Y-m-d H:i:s');
             $publication->publication_status = $_POST['publication_status'];
 
-
             $publication->update($publication_id);
 
             header('location:/Profile/index');
         }
         else {
-            $this->view('Publication/edit', $publication);
+            $this->view('Publication/edit', $publication, true);
         }
     
     }
@@ -83,5 +79,34 @@ class Publication extends \app\core\Controller {
         header('location:/Profile/index');
     }
 
-    
+    function viewPublication($id) {
+        $publication = new \app\models\Publication();
+        $publicationData = $publication->getById($id); 
+        $comments = $publication->getComments($id); 
+
+        $this->view('Publication/individual', ['publication' => $publicationData, 'comments' => $comments], true);
+    }
+
+    function search() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $publication = new \app\models\Publication();
+            $query = $_POST['query'];
+            
+            // Perform search by title or content
+            $publicationsByTitle = $publication->getByTitle($query);
+            $publicationsByContent = $publication->getByContent($query);
+            
+            // Merge the search results to remove duplicates
+            $searchResults = array_merge($publicationsByTitle, $publicationsByContent);
+            
+            // Remove duplicate entries
+            $searchResults = array_unique($searchResults, SORT_REGULAR);
+            
+            // Pass the search results to the view
+            $this->view('Publication/index', ['publications' => $searchResults], true);
+        } else {
+            // If not a POST request, redirect to the main page
+            header('location:/Publication/index');
+        }
+    }
 }

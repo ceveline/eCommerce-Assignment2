@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 13, 2024 at 04:17 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Mar 17, 2024 at 02:21 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,10 +57,10 @@ CREATE TABLE `publication` (
 --
 
 CREATE TABLE `publication_comment` (
-  `publication_comment` int(11) NOT NULL,
+  `publication_comment_id` int(11) NOT NULL,
   `profile_id` int(11) NOT NULL,
   `publication_id` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `comment_text` varchar(144) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -97,7 +97,7 @@ ALTER TABLE `publication`
 -- Indexes for table `publication_comment`
 --
 ALTER TABLE `publication_comment`
-  ADD PRIMARY KEY (`publication_comment`),
+  ADD PRIMARY KEY (`publication_comment_id`),
   ADD KEY `profile_id` (`profile_id`),
   ADD KEY `publication_id` (`publication_id`);
 
@@ -128,7 +128,7 @@ ALTER TABLE `publication`
 -- AUTO_INCREMENT for table `publication_comment`
 --
 ALTER TABLE `publication_comment`
-  MODIFY `publication_comment` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `publication_comment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -156,8 +156,8 @@ ALTER TABLE `publication`
 -- Constraints for table `publication_comment`
 --
 ALTER TABLE `publication_comment`
-  ADD CONSTRAINT `publication_comment_ibfk_1` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`),
-  ADD CONSTRAINT `publication_comment_ibfk_2` FOREIGN KEY (`publication_id`) REFERENCES `publication` (`publication_id`);
+  ADD CONSTRAINT `profileDedCommentToo` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`profile_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `publicationDedCommentToo` FOREIGN KEY (`publication_id`) REFERENCES `publication` (`publication_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

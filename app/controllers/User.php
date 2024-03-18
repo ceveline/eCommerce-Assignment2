@@ -23,7 +23,7 @@ class User extends \app\core\Controller {
             }
         }
         else {
-            $this->view('User/login'); //show the login view if user's input is incorrect/doesn't match
+            $this->view('User/login', null, true); //show the login view if user's input is incorrect/doesn't match
         }
     }
 
@@ -41,7 +41,7 @@ class User extends \app\core\Controller {
             header('location:/User/login');
         }
         else {
-            $this->view('User/registration');
+            $this->view('User/registration', null, true);
         }
         
     }

@@ -28,7 +28,7 @@ class Publication extends \app\core\Model {
 
     //read:
     public function getProfilePublication() { //join the tables to get the names as well for tge post cards (view)
-        $SQL = 'SELECT profile.profile_id, profile.first_name, profile.middle_name, profile.last_name, 
+        $SQL = 'SELECT profile.profile_id, profile.first_name, profile.middle_name, profile.last_name, publication.publication_id,  
         publication.publication_title, publication.publication_text, publication.publication_status, publication.timestamp
         FROM publication
         JOIN profile ON profile.profile_id=publication.profile_id
@@ -43,7 +43,7 @@ class Publication extends \app\core\Model {
     }
 
     public function getAll() {
-        $SQL = 'SELECT * FROM publication WHERE publication_status = 1';
+        $SQL = 'SELECT * FROM publication';
         $STMT = self::$_conn->prepare($SQL);
         $STMT->execute();
 
@@ -61,32 +61,43 @@ class Publication extends \app\core\Model {
     }
 
     public function getById($publication_id) {
-        $SQL = 'SELECT * FROM publication WHERE publication_id = :publication_id';
+        $SQL = 'SELECT p.*, pub.*
+                FROM publication pub
+                JOIN profile p ON pub.profile_id = p.profile_id
+                WHERE pub.publication_id = :publication_id';
         $STMT = self::$_conn->prepare($SQL);
         $STMT->execute(['publication_id'=>$publication_id]);
-    
+        
         $STMT->setFetchMode(PDO::FETCH_CLASS,'app\models\Publication');
         return $STMT->fetch();
     }
     
 
     public function getByTitle($publication_title) {
-        $SQL = 'SELECT * FROM publication WHERE publication_title = :publication_title';
+        $SQL = 'SELECT p.*, pub.*
+                FROM publication pub
+                JOIN profile p ON pub.profile_id = p.profile_id
+                WHERE pub.publication_title LIKE :publication_title';
         $STMT = self::$_conn->prepare($SQL);
-        $STMT->execute(['publication_title'=>$publication_title]);
-
-        $STMT->setFetchMode(PDO::FETCH_CLASS,'app\models\Publication');//set the type of data returned by fetches
-		return $STMT->fetchAll();
+        $STMT->execute(['publication_title' => '%' . $publication_title . '%']);
+    
+        $STMT->setFetchMode(PDO::FETCH_CLASS, 'app\models\Publication');
+        return $STMT->fetchAll();
     }
-
+    
     public function getByContent($publication_text) {
-        $SQL = 'SELECT * FROM publication WHERE publication_text = :publication_text';
+        $SQL = 'SELECT p.*, pub.*
+                FROM publication pub
+                JOIN profile p ON pub.profile_id = p.profile_id
+                WHERE pub.publication_text LIKE :publication_text';
         $STMT = self::$_conn->prepare($SQL);
-        $STMT->execute(['publication_text'=>$publication_text]);
-
-        $STMT->setFetchMode(PDO::FETCH_CLASS,'app\models\Publication');//set the type of data returned by fetches
-		return $STMT->fetchAll();
+        $STMT->execute(['publication_text' => '%' . $publication_text . '%']);
+    
+        $STMT->setFetchMode(PDO::FETCH_CLASS, 'app\models\Publication');
+        return $STMT->fetchAll();
     }
+    
+    
 
     //update
     public function update($publication_id) {
@@ -112,6 +123,16 @@ class Publication extends \app\core\Model {
 		);
     }
     
-
+    public function getComments($publication_id) {
+        $SQL = 'SELECT pc.*, p.first_name, p.middle_name, p.last_name
+                FROM publication_comment pc
+                JOIN profile p ON pc.profile_id = p.profile_id
+                WHERE pc.publication_id = :publication_id';
+        $STMT = self::$_conn->prepare($SQL);
+        $STMT->execute(['publication_id' => $publication_id]);
+        $STMT->setFetchMode(PDO::FETCH_CLASS, 'app\models\PublicationComment');
+        return $STMT->fetchAll();
+    }
+    
     
 }

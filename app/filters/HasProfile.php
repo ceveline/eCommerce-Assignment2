@@ -16,5 +16,4 @@ class HasProfile implements \app\core\AccessFilter{
 			return true;
 		}
 	}
-
 }
