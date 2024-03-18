@@ -31,7 +31,6 @@ class Comments extends Controller
             $commentModel->save();
             header("location:/Publication/view/{$publication_id}");
         } else {
-            // Redirect or display error
         }
     }
 
