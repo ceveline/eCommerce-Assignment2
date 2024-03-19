@@ -18,7 +18,7 @@
             </div><br>
 
             <div class="form-group">
-                <textarea id="publication_text" form="main" class="form-control" name="publication_text" rows="6" maxlength="255" placeholder="Type your content here"></textarea>
+                <textarea id="publication_text" form="main" class="form-control" name="publication_text" rows="6" maxlength="144" placeholder="Type your content here"></textarea>
             </div>
 
             <div class="radioBtns" require>

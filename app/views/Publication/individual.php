@@ -55,7 +55,7 @@
                     <h3>Add Comment</h3>
                     <form action="/Comment/add/<?php echo $publication->publication_id; ?>" method="post">
                         <label for="comment_text">Your Comment:</label><br>
-                        <textarea id="comment_text" name="comment_text" rows="4" cols="50" required></textarea><br><br>
+                        <textarea id="comment_text" name="comment_text" maxlength="144" rows="4" cols="50" required></textarea><br><br>
                         <input type="submit" value="Add Comment">
                     </form>
                 <?php else : ?>
